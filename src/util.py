@@ -45,8 +45,8 @@ def get_volvo_app_version():
 def get_token_path():
     token_path = ".token"
     if os.environ.get("IS_HA_ADDON"):
-        check_existing_folder("/addons/volvo2mqtt/token/")
-        token_path = "/addons/volvo2mqtt/token/.token"
+        check_existing_folder("/addons/volvo2mqttdave/token/")
+        token_path = "/addons/volvo2mqttdave/token/.token"
 
     return token_path
 
@@ -63,15 +63,15 @@ def get_icon_between(icon_list, state):
 
 
 def setup_logging():
-    log_location = "volvo2mqtt.log"
+    log_location = "volvo2mqttdave.log"
     if os.environ.get("IS_HA_ADDON"):
-        check_existing_folder("/addons/volvo2mqtt/log/")
-        log_location = "/addons/volvo2mqtt/log/volvo2mqtt.log"
+        check_existing_folder("/addons/volvo2mqttdave/log/")
+        log_location = "/addons/volvo2mqttdave/log/volvo2mqttdave.log"
 
     logging.Formatter.converter = lambda *args: datetime.now(tz=TZ).timetuple()
     file_log_handler = logging.handlers.RotatingFileHandler(log_location, maxBytes=1000000, backupCount=1)
     formatter = logging.Formatter(
-        '%(asctime)s volvo2mqtt [%(process)d] - %(levelname)s: %(message)s',
+        '%(asctime)s volvo2mqttdave [%(process)d] - %(levelname)s: %(message)s',
         '%b %d %H:%M:%S')
     file_log_handler.setFormatter(formatter)
 

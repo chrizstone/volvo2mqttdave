@@ -7,7 +7,7 @@ from util import set_tz, setup_logging, set_mqtt_settings, validate_settings
 
 if __name__ == '__main__':
     setup_logging()
-    logging.info("Starting volvo2mqtt version " + VERSION)
+    logging.info("Starting volvo2mqttdave version " + VERSION)
     validate_settings()
     set_tz()
     set_mqtt_settings()

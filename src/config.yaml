@@ -1,7 +1,7 @@
-name: "Volvo2Mqtt"
+name: "Volvo2MqttDave"
 description: "Volvo AAOS MQTT bridge"
 version: "1.10.5"
-slug: "volvo2mqtt"
+slug: "volvo2mqttdave"
 init: false
 url: "https://github.com/chrizstone/volvo2mqtt"
 apparmor: true

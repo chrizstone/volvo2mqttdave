@@ -1,6 +1,6 @@
 #include <tunables/global>
 
-profile volvo2mqtt flags=(attach_disconnected,mediate_deleted) {
+profile volvo2mqttdave flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
 
   # Capabilities
