@@ -11,7 +11,7 @@ RUN apk add --no-cache python3 bash py3-pip
 WORKDIR /volvoAAOS2mqttDave
 
 # download requirements.txt
-RUN wget --no-cache https://raw.githubusercontent.com/chrizstone/volvo2mqtt/main/requirements.txt
+RUN wget --no-cache https://raw.githubusercontent.com/chrizstone/volvo2mqttdave/main/requirements.txt
 
 # install dependencies
 RUN pip install -r requirements.txt --break-system-packages
