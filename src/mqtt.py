@@ -24,7 +24,7 @@ active_schedules = {}
 otp_code = None
 
 def connect():
-    client = mqtt.Client("volvoAAOS2mqtt") if os.environ.get("IS_HA_ADDON") \
+    client = mqtt.Client("volvoAAOS2mqttDave") if os.environ.get("IS_HA_ADDON") \
         else mqtt.Client("volvoAAOS2mqttDave_" + settings.volvoData["username"].replace("+", ""))
 
     client.will_set(availability_topic, "offline", 0, False)
@@ -38,7 +38,7 @@ def connect():
                 port = settings["mqtt"]["port"]
     client.connect(settings["mqtt"]["broker"], port)
     client.loop_start()
-    client.subscribe("volvoAAOS2mqtt/otp_code")
+    client.subscribe("volvoAAOS2mqttDave/otp_code")
     client.on_message = on_message
     client.on_disconnect = on_disconnect
     client.on_connect = on_connect
