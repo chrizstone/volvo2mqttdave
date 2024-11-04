@@ -2,7 +2,7 @@
 FROM python:3.9-slim
 
 # set the working directory in the container
-WORKDIR /volvoAAOS2mqtt
+WORKDIR /volvoAAOS2mqttDave
 
 # copy the dependencies file to the working directory
 COPY requirements.txt .

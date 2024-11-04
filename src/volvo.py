@@ -154,7 +154,7 @@ def send_otp(auth_session, data):
             break
 
         logging.info("Waiting for otp code... Please check your mailbox and post your otp code to the following "
-                     "mqtt topic \"volvoAAOS2mqtt/otp_code\". Retry " + str(i) + "/" + str(otp_max_loops))
+                     "mqtt topic \"volvoAAOS2mqttDave/otp_code\". Retry " + str(i) + "/" + str(otp_max_loops))
         time.sleep(5)
 
     if not mqtt.otp_code:
@@ -338,7 +338,7 @@ def get_vehicle_details(vin):
         data = response.json()["data"]
         logging.debug(response.text)
         device = {
-            "identifiers": [f"volvoAAOS2mqtt_{vin}"],
+            "identifiers": [f"volvoAAOS2mqttDave_{vin}"],
             "manufacturer": "Volvo",
             "model": data['descriptions']['model'],
             "name": f"{data['descriptions']['model']} ({data['modelYear']}) - {vin}",
@@ -347,7 +347,7 @@ def get_vehicle_details(vin):
     elif response.status_code == 500 and not settings.volvoData["vin"]:
         # Workaround for some cars that are not returning vehicle details
         device = {
-            "identifiers": [f"volvoAAOS2mqtt_{vin}"],
+            "identifiers": [f"volvoAAOS2mqttDave_{vin}"],
             "manufacturer": "Volvo",
             "model": vin,
             "name": f"Volvo - {vin}",

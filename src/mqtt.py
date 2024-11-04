@@ -25,7 +25,7 @@ otp_code = None
 
 def connect():
     client = mqtt.Client("volvoAAOS2mqtt") if os.environ.get("IS_HA_ADDON") \
-        else mqtt.Client("volvoAAOS2mqtt_" + settings.volvoData["username"].replace("+", ""))
+        else mqtt.Client("volvoAAOS2mqttDave_" + settings.volvoData["username"].replace("+", ""))
 
     client.will_set(availability_topic, "offline", 0, False)
     if settings["mqtt"]["username"] and settings["mqtt"]["password"]:
@@ -55,14 +55,14 @@ def create_otp_input():
         "schema": "state",
         "command_topic": otp_mqtt_topic,
         "state_topic": state_topic,
-        "unique_id": "volvoAAOS2mqtt_otp",
+        "unique_id": "volvoAAOS2mqttDave_otp",
         "pattern": r"\d{6}",
         "icon": "mdi:two-factor-authentication",
         "mode": "text"
     }
 
     mqtt_client.publish(
-        "homeassistant/text/volvoAAOS2mqtt/volvo_otp/config",
+        "homeassistant/text/volvoAAOS2mqttDave/volvo_otp/config",
         json.dumps(config),
         retain=True
     )
@@ -94,12 +94,12 @@ def send_car_images(vin, data, device):
                 "content_type": "image/png",
                 "image_topic": image_topic,
                 "device": device,
-                "unique_id": f"volvoAAOS2mqtt_{vin}_{entity['id']}",
+                "unique_id": f"vvolvoAAOS2mqttDave_{vin}_{entity['id']}",
                 "availability_topic": availability_topic
             }
 
             mqtt_client.publish(
-                f"homeassistant/image/volvoAAOS2mqtt/{vin}_{entity['id']}/config",
+                f"homeassistant/image/volvoAAOS2mqttDave/{vin}_{entity['id']}/config",
                 json.dumps(config),
                 retain=True
             )
@@ -372,7 +372,7 @@ def update_ha_device(entity, vin, state):
         "icon": f"mdi:{icon}" if icon else f"mdi:{entity['icon']}",
         "state_topic": f"homeassistant/{entity['domain']}/{vin}_{entity['id']}/state",
         "device": devices[vin],
-        "unique_id": f"volvoAAOS2mqtt_{vin}_{entity['id']}",
+        "unique_id": f"vvolvoAAOS2mqttDave_{vin}_{entity['id']}",
         "availability_topic": availability_topic
     }
     if entity.get("device_class"):
@@ -394,7 +394,7 @@ def update_ha_device(entity, vin, state):
         mqtt_client.subscribe(command_topic)
 
     mqtt_client.publish(
-        f"homeassistant/{entity['domain']}/volvoAAOS2mqtt/{vin}_{entity['id']}/config",
+        f"homeassistant/{entity['domain']}/volvoAAOS2mqttDave/{vin}_{entity['id']}/config",
         json.dumps(config),
         retain=True
     )
@@ -413,7 +413,7 @@ def create_ha_devices():
                 "icon": f"mdi:{entity['icon']}",
                 "state_topic": f"homeassistant/{entity['domain']}/{vin}_{entity['id']}/state",
                 "device": device,
-                "unique_id": f"volvoAAOS2mqtt_{vin}_{entity['id']}",
+                "unique_id": f"volvoAAOS2mqttDave_{vin}_{entity['id']}",
                 "availability_topic": availability_topic
             }
 
@@ -444,7 +444,7 @@ def create_ha_devices():
                 config["url_topic"] = f"homeassistant/{entity['domain']}/{vin}_{entity['id']}/image_url"
 
             mqtt_client.publish(
-                f"homeassistant/{entity['domain']}/volvoAAOS2mqtt/{vin}_{entity['id']}/config",
+                f"homeassistant/{entity['domain']}/volvoAAOS2mqttDave/{vin}_{entity['id']}/config",
                 json.dumps(config),
                 retain=True
             )
@@ -463,5 +463,5 @@ def send_offline():
 def delete_old_entities():
     for vin in volvo.vins:
         for entity in old_entity_ids:
-            topic = f"homeassistant/sensor/volvoAAOS2mqtt/{vin}_{entity}/config"
+            topic = f"homeassistant/sensor/volvoAAOS2mqttDave/{vin}_{entity}/config"
             mqtt_client.publish(topic, payload="", retain=True)

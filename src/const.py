@@ -53,7 +53,7 @@ units = {
             }
         }
 
-availability_topic = "volvoAAOS2mqtt/availability"
+availability_topic = "volvoAAOS2mqttDave/availability"
 
 charging_system_states = {"CHARGING_SYSTEM_CHARGING": "Charging", "CHARGING_SYSTEM_IDLE": "Idle",
                           "CHARGING_SYSTEM_FAULT": "Fault", "CHARGING_SYSTEM_UNSPECIFIED": "Unspecified",
@@ -140,4 +140,4 @@ supported_entities = [
 
 old_entity_ids = ["months_to_service", "service_warning_trigger", "distance_to_empty"]
 otp_max_loops = 24
-otp_mqtt_topic = "volvoAAOS2mqtt/otp_code"
+otp_mqtt_topic = "volvoAAOS2mqttDave/otp_code"
