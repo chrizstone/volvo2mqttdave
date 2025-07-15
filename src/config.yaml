@@ -1,6 +1,6 @@
 name: "Volvo2MqttDave"
 description: "Volvo AAOS MQTT bridge"
-version: "1.10.5"
+version: "1.12.1"
 slug: "volvo2mqttdave"
 init: false
 url: "https://github.com/chrizstone/volvo2mqttdave"
@@ -21,6 +21,7 @@ options:
     port: "auto_port"
     username: "auto_user"
     password: "auto_password"
+    logging: false
   volvoData:
     username: null
     password: null
@@ -38,6 +39,7 @@ schema:
     port: str
     username: str?
     password: str?
+    logging: bool
   volvoData:
     username: match(^([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)|(\+\d{5,20})$)
     password: str
